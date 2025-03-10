@@ -10,22 +10,20 @@ import { Skeleton } from "../components/loader";
 import { CartItem } from "../types/types";
 import { addToCart } from "../redux/reducer/cartReducer";
 import { useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
 
 const Search = () => {
-  const searchQuery = useSearchParams()[0];
 
-  const {
+  const { 
     data: categoriesResponse,
-    isLoading: loadingCategories,
-    isError,
-    error,
-  } = useCategoriesQuery("");
+     isLoading: loadingCategories,
+      isError,
+       error, 
+      } = useCategoriesQuery("");
 
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
-  const [maxPrice, setMaxPrice] = useState(100000);
-  const [category, setCategory] = useState(searchQuery.get("category") || "");
+  const [maxPrice, setMaxPrice] = useState(300000);
+  const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
 
   const {
@@ -51,6 +49,7 @@ const Search = () => {
 
   const isPrevPage = page > 1;
   const isNextPage = page < 4;
+
 
   if (isError) {
     const err = error as CustomError;
@@ -78,7 +77,7 @@ const Search = () => {
           <input
             type="range"
             min={100}
-            max={100000}
+            max={300000}
             value={maxPrice}
             onChange={(e) => setMaxPrice(Number(e.target.value))}
           />
@@ -109,23 +108,26 @@ const Search = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        {productLoading ? (
+        {
+        productLoading ? (
           <Skeleton length={10} />
         ) : (
           <div className="search-product-list">
-            {searchedData?.products.map((i) => (
-              <ProductCard
-                key={i._id}
-                productId={i._id}
-                name={i.name}
-                price={i.price}
-                stock={i.stock}
-                handler={addToCartHandler}
-                photos={i.photos}
-              />
-            ))}
-          </div>
+          {searchedData?.products.map((i) => (
+            <ProductCard
+              key={i._id}
+              productId={i._id}
+              name={i.name}
+              price={i.price}
+              stock={i.stock}
+              handler={addToCartHandler}
+              photo={i.photo}
+            />
+          ))}
+        </div>
         )}
+
+
 
         {searchedData && searchedData.totalPage > 1 && (
           <article>
