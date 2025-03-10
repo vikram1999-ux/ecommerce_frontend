@@ -47,6 +47,7 @@ const TransactionManagement = () => {
             subtotal,
             total,
             discount,
+            shippingCharges,
      } = data?.order || defaultData;
 
      const [updateOrder] = useUpdateOrderMutation();

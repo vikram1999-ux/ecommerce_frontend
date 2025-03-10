@@ -10,7 +10,6 @@ import { Skeleton } from "../components/loader";
 import { CartItem } from "../types/types";
 import { addToCart } from "../redux/reducer/cartReducer";
 import { useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
 
 const Search = () => {
 
@@ -20,15 +19,6 @@ const Search = () => {
       isError,
        error, 
       } = useCategoriesQuery("");
-
-  // const searchQuery = useSearchParams()[0];
-
-  // const {
-  //   data: categoriesResponse,
-  //   isLoading: loadingCategories,
-  //   isError,
-  //   error,
-  // } = useCategoriesQuery("");
 
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
