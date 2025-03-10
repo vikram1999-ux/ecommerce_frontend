@@ -3,8 +3,8 @@ import { productAPI } from "./api/productAPI";
 import { userAPI } from "./api/userAPI";
 import { userReducer } from "./reducer/userReducer";
 import { cartReducer } from "./reducer/cartReducer";
-import { orderAPI } from "./api/orderAPI";
-import { dashboardAPI } from "./api/dashboardAPI";
+import { orderApi } from "./api/orderAPI";
+import { dashboardApi } from "./api/dashboardAPI";
 
 export const server = import.meta.env.VITE_SERVER;
 
@@ -12,8 +12,8 @@ export const store = configureStore({
   reducer: {
     [userAPI.reducerPath]: userAPI.reducer,
     [productAPI.reducerPath]: productAPI.reducer,
-    [orderAPI.reducerPath]: orderAPI.reducer,
-    [dashboardAPI.reducerPath]: dashboardAPI.reducer,
+    [orderApi.reducerPath]: orderApi.reducer,
+    [dashboardApi.reducerPath]: dashboardApi.reducer,
     [userReducer.name]: userReducer.reducer,
     [cartReducer.name]: cartReducer.reducer,
   },
@@ -21,8 +21,8 @@ export const store = configureStore({
     ...mid(),
     userAPI.middleware,
     productAPI.middleware,
-    orderAPI.middleware,
-    dashboardAPI.middleware,
+    orderApi.middleware,
+    dashboardApi.middleware,
   ],
 });
 
